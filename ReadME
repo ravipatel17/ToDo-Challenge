@@ -1,0 +1,6 @@
+This is an application based on MAMP/XAMP utilizing PHP, Javascript, and HTML. To run this application put it in the production
+folder of your web stack. Please see below for usage instructions:
+
+1. Click list to update the task list.
+2. To Delete, Enter a task id (can be referenced after clicking list) and click delete. It will display a response message.
+3. To Add, Enter a entry for the task and click add. It will display a response message.
