@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<!--==================================================================
+//
+// Web site: 
+// Web page: ToDo Application
+// Course:   CSC 4996
+// Author:   Ravi
+// Date:     January 14th 2019
+// Description:
+//   This is a ToDo list application for CSC 4996. This is the main webpage HTML code.
+// 
+//=================================================================-->
+
+<head>
+  
+	<title>ToDo</title>
+	<meta charset="UTF-8">
+  <meta name="author" content="Ravi Patel"/>
+  <meta name="description" content="ToDo Application"/>
+  <meta http-equiv="Expires" content="-1">
+	<script type="text/javascript">
+
+  "use strict";
+		//==================================================
+		// SomeFunction
+		//==================================================
+		function Add()
+		{
+      
+      var entry = todoEntry.value;
+      try {
+        
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status == 200)
+          {
+            alert(this.responseText);
+          }
+        }
+
+        xhttp.open("POST", "database.php", false);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("entry=" + entry + "&operation=add");
+      }
+      catch (ex)
+      {
+        window.alert("Error" + "\nName: " + ex.name + 
+          "\nMessage: " + ex.message + "\nStack: " + ex.stack);
+      }
+		}
+
+    function Delete()
+    {
+      
+      var id = todoID.value;
+      try {
+        
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status == 200)
+          {
+            alert(this.responseText);
+          }
+        }
+
+        xhttp.open("POST", "database.php", false);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("id=" + id + "&operation=delete");
+      }
+      catch (ex)
+      {
+        window.alert("Error" + "\nName: " + ex.name + 
+          "\nMessage: " + ex.message + "\nStack: " + ex.stack);
+      }
+    }
+
+    function List()
+    {
+      try {
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status == 200)
+          {
+            ToDo.innerHTML = this.responseText;
+          }
+        }
+
+        xhttp.open("POST", "database.php", false);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("operation=list");
+      }
+      catch (ex)
+      {
+        window.alert("Error" + "\nName: " + ex.name + 
+          "\nMessage: " + ex.message + "\nStack: " + ex.stack);
+      }
+    }
+		
+	</script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+ 
+<body>
+
+  <table>
+  <tr>
+  	<td class = "header" colspan = 2>
+  <h1>ToDo Application</h1>
+  	</td>
+  </tr>
+
+  <!--This is where the main todo temp placement is-->
+  <tr class = "body">
+  <td>
+       <table id = "listTable">
+        <thead id = "TodoHeaders">
+          <tr>
+            <td>TaskID</td>
+            <td>Task</td>
+          </tr>
+        </thead>
+        <tbody id = "ToDo">
+        </tbody>
+      </table>
+      <br>
+      <label>ToDo Entry (For Add Operation)</label>
+      <input type = "text" id = "todoEntry">
+      <br>
+      <label>Entry ID (For Delete Operation)</label>
+      <input type = "text" id = "todoID">
+      <br>
+      <input type = "submit" value = "Add" onclick = "Add()">
+      <input type = "submit" value = "Delete" onclick = "Delete()">
+      <input type = "submit" value = "List" onclick = "List()">
+  </td>
+  </tr>
+  <!--This is where the footer code is -->
+  <tr class = "footer">
+  	<td>
+      <p>Phone: +1 (800) 000-0000</p>
+      <p>Email: Patel.Programs@gmail.com</p>
+      <p>Address: 1 Fake Drive Detroit, MI, 48202</p>
+      <p>&copy;2019 Patel Programs</p>
+  	</td>
+  </tr>
+</table>
+  
+</body>
+ 
+</html>
